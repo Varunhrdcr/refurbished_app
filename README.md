@@ -27,7 +27,7 @@ A simple web-based inventory dashboard built using **Flask** and **SQLite** to m
 
 ### 1. Clone the Repository
 git clone https://github.com/Varunhrdcr/refurbished_app.git
-cd refurbished_app
+
 
 
 ### 2. Set Up Virtual Environment (optional)
