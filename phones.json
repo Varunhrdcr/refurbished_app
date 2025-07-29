@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "brand": "Samsung",
+        "model": "Galaxy S10",
+        "condition": "Good",
+        "base_price": 250,
+        "stock": 10
+    },
+    {
+        "id": 1,
+        "brand": "Apple",
+        "model": "iPhone 12",
+        "condition": "Good",
+        "base_price": 45000,
+        "stock": 5
+    },
+    {
+        "id": 3,
+        "brand": "Motorola ",
+        "model": "Fusion 50",
+        "condition": "Excellent",
+        "base_price": 16,
+        "stock": 5,
+        "prices": {
+            "X": 14,
+            "Y": 12,
+            "Z": 14
+        }
+    }
+]

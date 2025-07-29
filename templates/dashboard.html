@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Refurbished Phone Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f6f8;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        table {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .form-section {
+            margin-top: 40px;
+        }
+        .logout-btn {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Refurbished Phone Dashboard
+        <a href="{{ url_for('logout') }}" class="btn btn-danger logout-btn">Logout</a>
+    </h2>
+
+    {% if phones %}
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Condition</th>
+                <th>Stock</th>
+                <th>Base Price</th>
+                <th>Platform Prices</th>
+                <th>Platform Categories</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for phone in phones %}
+            <tr>
+                <td>{{ phone.id }}</td>
+                <td>{{ phone.brand }}</td>
+                <td>{{ phone.model }}</td>
+                <td>{{ phone.condition }}</td>
+                <td>{{ phone.stock }}</td>
+                <td>${{ phone.base_price }}</td>
+                <td>
+                    X: ${{ phone.prices.X }}<br>
+                    Y: ${{ phone.prices.Y }}<br>
+                    Z: ${{ phone.prices.Z }}
+                </td>
+                <td>
+                    X: {{ phone.condition_mapping.X }}<br>
+                    Y: {{ phone.condition_mapping.Y }}<br>
+                    Z: {{ phone.condition_mapping.Z }}
+                </td>
+                <td>
+                    <a href="/edit/{{ phone.id }}" class="btn btn-sm btn-primary mb-1">Edit</a><br>
+                    <a href="/delete/{{ phone.id }}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No phones available to display.</p>
+    {% endif %}
+
+    <div class="form-section">
+        <h4>Add New Phone</h4>
+        <form method="POST" action="{{ url_for('add') }}">
+            <div class="form-group">
+                <label for="brand">Brand:</label>
+                <input type="text" name="brand" id="brand" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="model">Model:</label>
+                <input type="text" name="model" id="model" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="condition">Condition:</label>
+                <select name="condition" id="condition" class="form-control" required>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Good">Good</option>
+                    <option value="Usable">Usable</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="base_price">Base Price:</label>
+                <input type="number" name="base_price" id="base_price" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="stock">Stock:</label>
+                <input type="number" name="stock" id="stock" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-success">Add Phone</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

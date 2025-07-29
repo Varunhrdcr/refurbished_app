@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Phone</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f6f8;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Edit Phone Details</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="brand">Brand:</label>
+            <input type="text" name="brand" id="brand" value="{{ phone.brand }}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="model">Model:</label>
+            <input type="text" name="model" id="model" value="{{ phone.model }}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="condition">Condition:</label>
+            <select name="condition" id="condition" class="form-control" required>
+                <option value="Excellent" {% if phone.condition == 'Excellent' %}selected{% endif %}>Excellent</option>
+                <option value="Good" {% if phone.condition == 'Good' %}selected{% endif %}>Good</option>
+                <option value="Usable" {% if phone.condition == 'Usable' %}selected{% endif %}>Usable</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="base_price">Base Price:</label>
+            <input type="number" name="base_price" id="base_price" value="{{ phone.base_price }}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="stock">Stock:</label>
+            <input type="number" name="stock" id="stock" value="{{ phone.stock }}" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+</body>
+</html>
